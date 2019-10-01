@@ -1,6 +1,6 @@
 using System.Net;
 
-public enum PacketType
+/* public enum PacketType
 {
     HandShake,
     HandShake_OK, 
@@ -8,7 +8,7 @@ public enum PacketType
     Ping,
     Pong,
     Message,
-}
+}*/
 
 
 public class NetworkPacket

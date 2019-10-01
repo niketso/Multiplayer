@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PacketManager 
+
+public enum UserPacketType
+{
+    message
+}
+public class UserPacketHeader 
 {
     
 }
