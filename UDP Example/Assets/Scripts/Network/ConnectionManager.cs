@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ConnectionManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ConnectToServer(NetworkManager networkManager)
+    {
+      
+    }
+
+    public void ConfirmConnection()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

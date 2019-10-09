@@ -1,17 +1,7 @@
+using System.IO;
 using System.Net;
 
-/* public enum PacketType
-{
-    HandShake,
-    HandShake_OK, 
-    Error,
-    Ping,
-    Pong,
-    Message,
-}*/
-
-
-public class NetworkPacket
+public class NetworkPacket<P> :ISerializablePacket
 {
     public PacketType type;
     public int clientId;
@@ -26,5 +16,15 @@ public class NetworkPacket
         this.clientId = clientId;
         this.ipEndPoint = ipEndPoint;
         this.payload = data;
+    }
+
+    public void Deserialize(Stream stream)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Serialize(Stream stream)
+    {
+        throw new System.NotImplementedException();
     }
 }
