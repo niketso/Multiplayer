@@ -7,14 +7,24 @@ public enum UserPacketType
 }
 public class UserPacketHeader : ISerializablePacket
 {
+    public uint senderId;
+    public uint id;
+    public uint objectId;
+    public ushort packetType { get; set; }
     public void Deserialize(Stream stream)
     {
-        throw new System.NotImplementedException();
+        BinaryReader br = new BinaryReader(stream);
+        id = br.ReadUInt32();
+        senderId = br.ReadUInt32();
+        packetType = br.ReadUInt16();
         
     }
 
     public void Serialize(Stream stream)
     {
-        throw new System.NotImplementedException();
+         BinaryWriter bw = new BinaryWriter(stream);
+        bw.Write(id);
+        bw.Write(senderId);
+        bw.Write(packetType);
     }
 }

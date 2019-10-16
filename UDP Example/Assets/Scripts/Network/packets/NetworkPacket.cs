@@ -1,30 +1,26 @@
 using System.IO;
 using System.Net;
 
-public class NetworkPacket<P> :ISerializablePacket
+public abstract class NetworkPacket<P> :ISerializablePacket
 {
-    public PacketType type;
-    public int clientId;
-    public IPEndPoint ipEndPoint;
-    public float timeStamp;
-    public byte[] payload;
+    public P Payload {get;set;}
+    public ushort PacketType {get; private set;}
+    public ushort packetType { get; set; }
 
-    public NetworkPacket(PacketType type, byte[] data, float timeStamp, int clientId = -1, IPEndPoint ipEndPoint = null)
+    public NetworkPacket(ushort PacketType)
     {
-        this.type = type;
-        this.timeStamp = timeStamp;
-        this.clientId = clientId;
-        this.ipEndPoint = ipEndPoint;
-        this.payload = data;
-    }
+        this.PacketType = PacketType;
 
+    }
+    protected abstract void OnSerialize(Stream stream);
+    protected abstract void OnDeserialize(Stream stream);
     public void Deserialize(Stream stream)
     {
-        throw new System.NotImplementedException();
+        OnDeserialize(stream);
     }
 
     public void Serialize(Stream stream)
     {
-        throw new System.NotImplementedException();
+        OnSerialize(stream);
     }
 }

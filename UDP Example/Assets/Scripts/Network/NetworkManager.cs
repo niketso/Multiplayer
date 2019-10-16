@@ -44,7 +44,7 @@ public class NetworkManager : MonoBehaviourSingleton<NetworkManager>, IReceiveDa
     private readonly Dictionary<int, Client> clients = new Dictionary<int, Client>();
     private readonly Dictionary<IPEndPoint, int> ipToId = new Dictionary<IPEndPoint, int>();
 
-    int clientId = 0; // This id should be generated during first handshake
+    int clientId = 0; // This id should be generated during first handshake /*CONNECTIONMANAGER */
     
     public void StartServer(int port)
     {
