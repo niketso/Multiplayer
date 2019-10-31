@@ -1,19 +1,11 @@
 ﻿using System.IO;
 
-public enum PacketType
-{
-    connectionRequest,
-    challengeRequest,
-    challengeResponse,
-    connected,
-    user
-}
 public class PacketHeader : ISerializablePacket
 {
     public uint senderId;
     public uint id;
     public uint objectId;
-    public ushort packetType { get; set; }
+    public ushort packetType { get; set; } 
     
     public void Deserialize(Stream stream)
     {
