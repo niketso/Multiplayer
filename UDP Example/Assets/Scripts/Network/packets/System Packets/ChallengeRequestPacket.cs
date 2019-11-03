@@ -1,18 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
+using System.IO;
 
-public class ChallengeRequestPacket : MonoBehaviour
+public struct ChallengeRequestInfo
 {
-    // Start is called before the first frame update
-    void Start()
+    public long serverSalt;
+}
+public class ChallengeRequestPacket : NetworkPacket<ChallengeRequestInfo>
+{
+    public ChallengeRequestPacket(ushort PacketType) : base(PacketType)
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    }
+    protected override void OnSerialize(Stream stream)
     {
-        
+        BinaryWriter binaryWriter = new BinaryWriter(stream);
+        binaryWriter.Write(Payload.serverSalt);
+    }
+    protected override void OnDeserialize(Stream stream)
+    {
+        BinaryReader binaryReader = new BinaryReader(stream);
+        ChallengeRequestInfo challengeRequestInfo;
+
+        challengeRequestInfo.serverSalt = binaryReader.ReadInt64();
+        Payload = challengeRequestInfo;
     }
 }

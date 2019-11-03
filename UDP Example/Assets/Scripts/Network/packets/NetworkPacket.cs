@@ -4,12 +4,11 @@ using System.Net;
 public abstract class NetworkPacket<P> :ISerializablePacket
 {
     public P Payload {get;set;}
-    public ushort PacketType {get; private set;}
     public ushort packetType { get; set; }
 
     public NetworkPacket(ushort PacketType)
     {
-        this.PacketType = PacketType;
+        this.packetType = PacketType;
 
     }
     protected abstract void OnSerialize(Stream stream);
